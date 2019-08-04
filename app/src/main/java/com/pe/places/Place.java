@@ -38,18 +38,7 @@ public class Place {
         places.add(new Place(R.drawable.ic_tacna,"Tacna"));
         places.add(new Place(R.drawable.ic_tarapoto,"Tarapoto"));
         places.add(new Place(R.drawable.ic_machu_picchu,"Machu Picchu"));
-        places.add(new Place(R.drawable.ic_arequipa,"Arequipa"));
-        places.add(new Place(R.drawable.ic_tacna,"Tacna"));
-        places.add(new Place(R.drawable.ic_tarapoto,"Tarapoto"));
-        places.add(new Place(R.drawable.ic_machu_picchu,"Machu Picchu"));
-        places.add(new Place(R.drawable.ic_arequipa,"Arequipa"));
-        places.add(new Place(R.drawable.ic_tacna,"Tacna"));
-        places.add(new Place(R.drawable.ic_tarapoto,"Tarapoto"));
-        places.add(new Place(R.drawable.ic_machu_picchu,"Machu Picchu"));
-        places.add(new Place(R.drawable.ic_arequipa,"Arequipa"));
-        places.add(new Place(R.drawable.ic_tacna,"Tacna"));
-        places.add(new Place(R.drawable.ic_tarapoto,"Tarapoto"));
-        places.add(new Place(R.drawable.ic_machu_picchu,"Machu Picchu"));
+
         return places;
     }
 }
