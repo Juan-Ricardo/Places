@@ -8,7 +8,6 @@ public class Place {
     private String name;
 
     public Place() {
-
     }
 
     public Place(int image, String name) {
