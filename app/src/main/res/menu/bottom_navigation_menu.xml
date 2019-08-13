@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_user"
+        android:orderInCategory="100"
+        android:title="Perfil"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/place"
+        android:icon="@drawable/ic_place"
+        android:orderInCategory="101"
+        android:title="Lugares"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/ic_notification"
+        android:orderInCategory="102"
+        android:title="Notificaciones"
+        app:showAsAction="never" />
+</menu>
