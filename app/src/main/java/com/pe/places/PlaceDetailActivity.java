@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.pe.places.dao.Place;
+import com.pe.places.dao.RoomDataBaseManager;
 
 public class PlaceDetailActivity extends AppCompatActivity {
 
@@ -50,15 +52,11 @@ public class PlaceDetailActivity extends AppCompatActivity {
             String name = namePlaceTextInputEditText.getText().toString();
             String country = countryTextInputEditText.getText().toString();
 
-            Bundle bundle=new Bundle();
-            bundle.putString(NAME,name);
-            bundle.putString(COUNTRY,country);
+            Place place=new Place();
+            place.setName(name);
 
-            Intent intent=new Intent();
-            intent.putExtras(bundle);
+            RoomDataBaseManager.getInstance(getBaseContext()).placeDao().save(place);
 
-            setResult(Activity.RESULT_OK,intent);
-            finish();
             //Toast.makeText(getBaseContext(), " " + name + " " + country, Toast.LENGTH_LONG).show();
         }
     };

@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pe.places.dao.Place;
 
 import java.util.LinkedList;
 import java.util.List;

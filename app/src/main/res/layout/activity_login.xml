@@ -21,6 +21,14 @@
             android:text="Places v1.0.0"
             android:textSize="18sp" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_gravity="center"
+            android:layout_width="224dp"
+            android:layout_height="224dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="water.json" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

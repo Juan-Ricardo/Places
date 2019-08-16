@@ -1,10 +1,25 @@
-package com.pe.places;
+package com.pe.places.dao;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.pe.places.R;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Entity
 public class Place {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "image")
+    @Ignore
     private int image;
+
+    @ColumnInfo(name = "name")
     private String name;
 
     public Place() {
