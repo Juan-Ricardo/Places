@@ -1,7 +1,7 @@
 # Places
 En Places hay miles de fotos de paisajes mágicos, Places esta disponible para Android y otros teléfonos inteligentes. Con Places puedes registrar luagares con una foto y darle una descripción, luego podrás compartir a tus amigos y familiares. usa Places, esta disponible *desde la API 21 hasta API 28*. Aprende a diseñar y construir apps móviles en http://www.academiamoviles.com
 
-![sample](https://user-images.githubusercontent.com/11542591/63218765-92a9d600-c127-11e9-971f-0ade3b74f6be.png)
+![sample](https://user-images.githubusercontent.com/11542591/63221298-9efc5600-c15c-11e9-8817-89389069f607.png)
 
 # Dependencias
 **build.gradle (módulo):**
