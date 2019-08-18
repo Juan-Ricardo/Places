@@ -1,8 +1,10 @@
-package com.pe.places;
+package com.pe.places.backup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.pe.places.R;
 
 public class MainActivity extends AppCompatActivity {
 
