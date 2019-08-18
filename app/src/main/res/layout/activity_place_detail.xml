@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaceDetailActivity">
+    tools:context=".place.PlaceDetailActivity">
 
     <include layout="@layout/app_bar_layout"></include>
 
@@ -16,8 +16,21 @@
         android:padding="24dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese nombre de la ciudad">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_place_text_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ingrese nombre de la ciudad">
@@ -33,10 +46,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrese nombre del pais">
+            android:hint="Describe la ciudad">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/country_text_input_edit_text"
+                android:id="@+id/descriptio_text_input_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

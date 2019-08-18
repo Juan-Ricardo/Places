@@ -18,7 +18,9 @@ public abstract class RoomDataBaseManager extends RoomDatabase {
 
     public static RoomDataBaseManager getInstance(Context context) {
         if (roomDataBaseManager == null) {
-            roomDataBaseManager = Room.databaseBuilder(context, RoomDataBaseManager.class, "placedb").build();
+            roomDataBaseManager = Room.databaseBuilder(context, RoomDataBaseManager.class, "placedb")
+                    .allowMainThreadQueries()
+                    .build();
         }
         return roomDataBaseManager;
     }

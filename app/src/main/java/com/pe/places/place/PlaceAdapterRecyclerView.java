@@ -1,4 +1,4 @@
-package com.pe.places;
+package com.pe.places.place;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pe.places.R;
 import com.pe.places.dao.Place;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
         Place place = this.places.get(position);
         holder.namePlaceTextView.setText(place.getName());
-        holder.placeImageView.setImageResource(place.getImage());
+        Picasso.get().load(place.getImage()).into(holder.placeImageView);
     }
 
     @Override

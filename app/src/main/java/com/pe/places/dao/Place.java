@@ -16,27 +16,46 @@ public class Place {
     private int id;
 
     @ColumnInfo(name = "image")
-    @Ignore
-    private int image;
+    private String image;
 
     @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "description")
+    private String description;
 
     public Place() {
 
     }
 
-    public Place(int image, String name) {
+    public Place(String image, String name, String description) {
         this.image = image;
         this.name = name;
+        this.description = description;
     }
 
-    public int getImage() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
@@ -47,13 +66,13 @@ public class Place {
         this.name = name;
     }
 
-    public static List<Place> getPlaces(){
-        List<Place> places=new LinkedList<>();
-        places.add(new Place(R.drawable.ic_arequipa,"Arequipa"));
-        places.add(new Place(R.drawable.ic_tacna,"Tacna"));
-        places.add(new Place(R.drawable.ic_tarapoto,"Tarapoto"));
-        places.add(new Place(R.drawable.ic_machu_picchu,"Machu Picchu"));
+    /*public static List<Place> getPlaces() {
+        List<Place> places = new LinkedList<>();
+        places.add(new Place(R.drawable.ic_arequipa, "Arequipa"));
+        places.add(new Place(R.drawable.ic_tacna, "Tacna"));
+        places.add(new Place(R.drawable.ic_tarapoto, "Tarapoto"));
+        places.add(new Place(R.drawable.ic_machu_picchu, "Machu Picchu"));
 
         return places;
-    }
+    }*/
 }

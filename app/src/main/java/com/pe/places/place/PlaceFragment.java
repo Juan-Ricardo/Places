@@ -1,4 +1,4 @@
-package com.pe.places;
+package com.pe.places.place;
 
 
 import android.content.Intent;
@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pe.places.R;
 import com.pe.places.dao.Place;
 import com.pe.places.dao.RoomDataBaseManager;
 
@@ -56,16 +57,14 @@ public class PlaceFragment extends Fragment {
         addPlaceFloatingActionButton.setOnClickListener(addPlaceOnClickListener);
         setupToolbar(view,"Places", "", false);
         this.places=new LinkedList<>();
-        this.places=Place.getPlaces();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        //Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
+        this.places = RoomDataBaseManager.getInstance(getContext()).placeDao().getAll();
         refreshPlaceAdapterRecyclerView();
-
-        List<Place> places = RoomDataBaseManager.getInstance(getContext()).placeDao().getAll();
-        Log.v("places: ",""+places.size());
     }
 
     private void refreshPlaceAdapterRecyclerView(){
@@ -87,7 +86,7 @@ public class PlaceFragment extends Fragment {
     private void setupToolbar(View view,String title, String subTitle, boolean arrow) {
         toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).setTitle(title);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(subTitle);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(arrow);
     }
