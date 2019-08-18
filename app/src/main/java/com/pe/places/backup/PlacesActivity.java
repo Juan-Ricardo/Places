@@ -1,4 +1,4 @@
-package com.pe.places;
+package com.pe.places.backup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,10 @@ import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pe.places.R;
+import com.pe.places.dao.Place;
+import com.pe.places.place.PlaceAdapterRecyclerView;
+import com.pe.places.place.PlaceDetailActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +47,6 @@ public class PlacesActivity extends AppCompatActivity {
         addPlaceFloatingActionButton.setOnClickListener(addPlaceOnClickListener);
         setupToolbar("Places", "", false);
         this.places=new LinkedList<>();
-        this.places=Place.getPlaces();
     }
 
     View.OnClickListener addPlaceOnClickListener = new View.OnClickListener() {
@@ -60,7 +63,6 @@ public class PlacesActivity extends AppCompatActivity {
         if (requestCode == ADD_PLACE && resultCode== Activity.RESULT_OK) {
             String name = data.getExtras().getString(PlaceDetailActivity.NAME);
             String country = data.getExtras().getString(PlaceDetailActivity.COUNTRY);
-            this.places.add(new Place(R.drawable.ic_tarapoto,name));
             refreshPlaceAdapterRecyclerView();
         }
     }
