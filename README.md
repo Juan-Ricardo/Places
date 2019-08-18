@@ -1,5 +1,5 @@
 # Places
-Places es una aplicación de Lugares, disponible para Android y otros teléfonos inteligentes. Con Places puedes registrar luagares con una foto y darle una descripción, luego podrás compartir a tus amigos y familiares. usa Places, esta disponible
+En Places hay miles de fotos de paisajes mágicos, Places esta disponible para Android y otros teléfonos inteligentes. Con Places puedes registrar luagares con una foto y darle una descripción, luego podrás compartir a tus amigos y familiares. usa Places, esta disponible
 *desde la API 21 hasta API 28*.
 
 # Dependencias
