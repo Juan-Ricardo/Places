@@ -3,6 +3,7 @@ package com.pe.places.place;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +43,7 @@ public class PlaceFragment extends Fragment {
     private BottomNavigationView menuBottomNavigationView;
     private boolean hide = false;
     private boolean isNavigationHide = false;
+    private ShimmerFrameLayout placeShimmerFrameLayout;
 
     public PlaceFragment() {
 
@@ -62,6 +65,10 @@ public class PlaceFragment extends Fragment {
         placeRecyclerView = view.findViewById(R.id.place_recycler_view);
         addPlaceFloatingActionButton = view.findViewById(R.id.add_place_floating_action_button);
         addPlaceFloatingActionButton.setOnClickListener(addPlaceOnClickListener);
+
+        placeShimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
+        placeShimmerFrameLayout.startShimmer();
+
         setupToolbar(view, "Places", "", false);
         this.places = new LinkedList<>();
     }
@@ -77,6 +84,8 @@ public class PlaceFragment extends Fragment {
     NestedScrollView.OnScrollChangeListener onScrollChangeListener = new NestedScrollView.OnScrollChangeListener() {
         @Override
         public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+            //BottomNavigationView
             if (scrollY < oldScrollY) { // up
                 animateNavigation(false);
             }
@@ -84,6 +93,7 @@ public class PlaceFragment extends Fragment {
                 animateNavigation(true);
             }
 
+            //FloatingActionButton
             if (scrollY >= oldScrollY) { // down
                 if (hide) return;
                 hideFab(addPlaceFloatingActionButton);
@@ -93,6 +103,7 @@ public class PlaceFragment extends Fragment {
                 showFab(addPlaceFloatingActionButton);
                 hide = false;
             }
+
         }
     };
 
@@ -106,19 +117,28 @@ public class PlaceFragment extends Fragment {
 
     public static void hideFab(View view) {
         int moveY = 3 * view.getHeight();
-        view.animate().translationY(moveY).setDuration(300).start();
+        view.animate().translationX(moveY).setDuration(300).start();
     }
 
     public static void showFab(View view) {
-        view.animate().translationY(0).setDuration(300).start();
+        view.animate().translationX(0).setDuration(300).start();
     }
 
     private void refreshPlaceAdapterRecyclerView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        placeRecyclerView.setLayoutManager(linearLayoutManager);
-        placeAdapterRecyclerView = new PlaceAdapterRecyclerView(this.places, R.layout.row_place, getActivity());
-        placeRecyclerView.setAdapter(placeAdapterRecyclerView);
-        placeAdapterRecyclerView.notifyDataSetChanged();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                placeRecyclerView.setLayoutManager(linearLayoutManager);
+                placeAdapterRecyclerView = new PlaceAdapterRecyclerView(places, R.layout.row_place, getActivity());
+                placeRecyclerView.setAdapter(placeAdapterRecyclerView);
+                placeAdapterRecyclerView.notifyDataSetChanged();
+
+                placeShimmerFrameLayout.setVisibility(View.GONE);
+                placeRecyclerView.setVisibility(View.VISIBLE);
+
+            }
+        },1500);
     }
 
     View.OnClickListener addPlaceOnClickListener = new View.OnClickListener() {

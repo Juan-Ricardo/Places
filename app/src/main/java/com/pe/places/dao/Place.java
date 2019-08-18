@@ -25,6 +25,9 @@ public class Place implements Serializable {
     @ColumnInfo(name = "description")
     private String description;
 
+    @ColumnInfo(name = "total_person")
+    private int totalPerson;
+
     public Place() {
 
     }
@@ -65,6 +68,14 @@ public class Place implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getTotalPerson() {
+        return totalPerson;
+    }
+
+    public void setTotalPerson(int totalPerson) {
+        this.totalPerson = totalPerson;
     }
 
     /*public static List<Place> getPlaces() {
