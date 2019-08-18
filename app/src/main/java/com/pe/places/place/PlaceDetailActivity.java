@@ -89,9 +89,22 @@ public class PlaceDetailActivity extends AppCompatActivity {
     };
 
     private void saveOrUpdate() {
+
         String name = namePlaceTextInputEditText.getText().toString();
         String description = descriptionTextInputEditText.getText().toString();
-        placeValidate(name, description);
+
+        //placeValidate(name, description);
+        if (name.isEmpty()) {
+            showMessage("Nombre",R.drawable.ic_user
+                    ,"Por favor ingrese nombre de la ciudad",R.color.dark);
+            return;
+        }
+        if (description.isEmpty()) {
+            showMessage("Descripción",R.drawable.ic_place
+                    ,"Por favor ingrese una descripción de la ciudad",R.color.primary_dark);
+            return;
+        }
+
         if (crud.equalsIgnoreCase(Constants.UPDATE)) {
             currentPlace.setName(name);
             currentPlace.setDescription(description);
@@ -106,25 +119,13 @@ public class PlaceDetailActivity extends AppCompatActivity {
         finish();
     }
 
-    private void placeValidate(String name, String description) {
-        if (name.isEmpty()) {
-            Alerter.create(PlaceDetailActivity.this)
-                    .setTitle("Nombre")
-                    .setIcon(R.drawable.ic_user)
-                    .setText("Por favor ingrese nombre de la ciudad")
-                    .setBackgroundColorRes(R.color.dark)
-                    .show();
-            return;
-        }
-        if (description.isEmpty()) {
-            Alerter.create(PlaceDetailActivity.this)
-                    .setTitle("Descripción")
-                    .setIcon(R.drawable.ic_place)
-                    .setText("Por favor ingrese una descripción de la ciudad")
-                    .setBackgroundColorRes(R.color.dark)
-                    .show();
-            return;
-        }
+    private void showMessage(String name,int icon, String detail, int background) {
+        Alerter.create(PlaceDetailActivity.this)
+                .setTitle(name)
+                .setIcon(icon)
+                .setText(detail)
+                .setBackgroundColorRes(background)
+                .show();
     }
 
     private void placeDelete() {

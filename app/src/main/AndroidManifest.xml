@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".app.PlaceApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,10 +26,10 @@
         <activity android:name=".menu.MenuActivity"></activity>
         <activity android:name=".place.PlaceDetailActivity"></activity>
         <activity
-            android:name=".BasicActivity"
+            android:name=".backup.BasicActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PlacesActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".backup.PlacesActivity" />
+        <activity android:name=".backup.MainActivity" />
     </application>
 
 </manifest>

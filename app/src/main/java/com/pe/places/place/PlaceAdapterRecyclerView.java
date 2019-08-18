@@ -45,7 +45,9 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
         final Place place = this.places.get(position);
         holder.namePlaceTextView.setText(place.getName());
         holder.descriptionPlaceTextView.setText(place.getDescription());
+
         Picasso.get().load(place.getImage()).into(holder.placeImageView);
+
         holder.editFrameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

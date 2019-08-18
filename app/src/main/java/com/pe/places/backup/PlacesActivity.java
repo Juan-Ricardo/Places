@@ -1,4 +1,4 @@
-package com.pe.places;
+package com.pe.places.backup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pe.places.R;
 import com.pe.places.dao.Place;
 import com.pe.places.place.PlaceAdapterRecyclerView;
 import com.pe.places.place.PlaceDetailActivity;
