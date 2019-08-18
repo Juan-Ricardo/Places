@@ -1,4 +1,4 @@
-package com.pe.places.place;
+package com.pe.places.notification;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,20 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pe.places.R;
 import com.pe.places.dao.Place;
+import com.pe.places.place.PlaceDetailActivity;
+import com.pe.places.retrofit.response.UserResponse;
 import com.pe.places.utilities.Constants;
-import com.pe.places.utilities.Utilities;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterRecyclerView.PlaceViewHolder> {
+public class UserAdapterRecyclerView extends RecyclerView.Adapter<UserAdapterRecyclerView.PlaceViewHolder> {
 
-    private List<Place> places;
+    private List<UserResponse> userResponses;
     private int resource;
     private Activity activity;
 
-    public PlaceAdapterRecyclerView(List<Place> places, int resource, Activity activity) {
-        this.places = places;
+    public UserAdapterRecyclerView(List<UserResponse> userResponses, int resource, Activity activity) {
+        this.userResponses = userResponses;
         this.resource = resource;
         this.activity = activity;
     }
@@ -42,19 +43,10 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
 
     @Override
     public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
-        final Place place = this.places.get(position);
-        holder.namePlaceTextView.setText(place.getName());
-        holder.descriptionPlaceTextView.setText("En " + place.getName() + " hay "
-                + place.getTotalPerson() + " Personas. " + place.getDescription());
+        final UserResponse userResponse = this.userResponses.get(position);
+        holder.namePlaceTextView.setText(userResponse.getName());
+        holder.emailImageView.setText(userResponse.getEmail());
 
-        Picasso.get().load(place.getImage()).into(holder.placeImageView);
-
-        holder.editFrameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendPlaceDetail(place);
-            }
-        });
     }
 
     private void sendPlaceDetail(Place place) {
@@ -68,22 +60,18 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
 
     @Override
     public int getItemCount() {
-        return this.places.size();
+        return this.userResponses.size();
     }
 
     public class PlaceViewHolder extends RecyclerView.ViewHolder {
-        private FrameLayout editFrameLayout;
-        private ImageView placeImageView;
+        private TextView emailImageView;
         private TextView namePlaceTextView;
-        private TextView descriptionPlaceTextView;
 
 
         public PlaceViewHolder(View view) {
             super(view);
-            editFrameLayout = view.findViewById(R.id.edit_frame_layout);
-            namePlaceTextView = view.findViewById(R.id.name_place_text_view);
-            placeImageView = view.findViewById(R.id.place_image_view);
-            descriptionPlaceTextView = view.findViewById(R.id.description_place_text_view);
+            emailImageView = view.findViewById(R.id.email_text_view);
+            namePlaceTextView = view.findViewById(R.id.name_text_view);
         }
     }
 }
