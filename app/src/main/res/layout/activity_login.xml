@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,13 +21,21 @@
             android:text="Places v1.0.0"
             android:textSize="18sp" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="224dp"
+            android:layout_height="224dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="water.json"
+            app:lottie_loop="true" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="Iniciar Sesión"
-            android:textSize="48sp"
+            android:textSize="32sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -60,10 +68,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/log_in_material_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_marginTop="24dp"
             android:text="Ingresar"
             android:textAllCaps="false"
+            android:textSize="20sp"
             android:visibility="visible"
             app:cornerRadius="24dp" />
 
