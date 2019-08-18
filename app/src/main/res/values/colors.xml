@@ -10,4 +10,16 @@
     <color name="divider">#BDBDBD</color>
     <color name="dark">#2b2b2b</color>
     <color name="white">#ffffff</color>
+
+    <!--https://stackoverflow.com/questions/15852122/hex-transparency-in-colors-->
+    <color name="dark_100">#80000000</color>
+    <color name="dark_75">#BF000000</color>
+    <color name="dark_70">#B3000000</color>
+    <color name="dark_65">#A6000000</color>
+    <color name="dark_50">#80000000</color>
+    <color name="dark_45">#80000000</color>
+    <color name="dark_35">#80000000</color>
+    <color name="dark_25">#80000000</color>
+    <color name="red">#F44336</color>
+
 </resources>

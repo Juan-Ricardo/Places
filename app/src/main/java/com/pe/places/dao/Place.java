@@ -7,11 +7,12 @@ import androidx.room.PrimaryKey;
 
 import com.pe.places.R;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-public class Place {
+public class Place implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 

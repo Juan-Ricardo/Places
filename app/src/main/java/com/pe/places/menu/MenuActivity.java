@@ -22,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         menuBottomNavigationView=findViewById(R.id.menu_bottom_navigation);
-        menuBottomNavigationView.setSelectedItemId(R.id.place);
+        //menuBottomNavigationView.setSelectedItemId(R.id.place);
         menuBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
