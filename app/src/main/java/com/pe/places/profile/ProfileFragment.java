@@ -1,4 +1,4 @@
-package com.pe.places;
+package com.pe.places.profile;
 
 
 import android.os.Bundle;
@@ -11,15 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pe.places.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     private Toolbar toolbar;
 
-    public NotificationFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -27,13 +29,13 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notification, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         finds(view);
         return view;
     }
 
-    private void finds(View view) {
-        setupToolbar(view, "Notificaciones", "", false);
+    private void finds(View view){
+        setupToolbar(view,"Perfil","",false);
     }
 
     private void setupToolbar(View view, String title, String subTitle, boolean arrow) {

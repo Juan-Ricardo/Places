@@ -26,6 +26,19 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.airbnb.android:lottie:3.0.1'
+    implementation 'com.karumi:dexter:5.0.0'
+    implementation "androidx.room:room-runtime:2.0.0"
+    annotationProcessor "androidx.room:room-compiler:2.0.0"
+
+    //http://facebook.github.io/stetho/
+    //chrome://inspect
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+
+    //https://github.com/Tapadoo/Alerter/blob/master/CHANGELOG.md
+    //https://github.com/Tapadoo/Alerter
+    implementation 'com.tapadoo.android:alerter:2.0.6'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

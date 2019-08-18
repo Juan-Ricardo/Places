@@ -1,15 +1,17 @@
-package com.pe.places;
+package com.pe.places.menu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pe.places.notification.NotificationFragment;
+import com.pe.places.place.PlaceFragment;
+import com.pe.places.profile.ProfileFragment;
+import com.pe.places.R;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         menuBottomNavigationView=findViewById(R.id.menu_bottom_navigation);
-        menuBottomNavigationView.setSelectedItemId(R.id.place);
+        //menuBottomNavigationView.setSelectedItemId(R.id.place);
         menuBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
