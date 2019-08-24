@@ -12,7 +12,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug{
+        debug {
             //buildConfigField 'String', 'URL', '"https://jsonplaceholder.typicode.com"'
             buildConfigField 'String', 'URL', '"https://diplomado-restaurant-backend.herokuapp.com"'
         }

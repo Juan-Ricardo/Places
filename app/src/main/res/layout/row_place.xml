@@ -7,6 +7,7 @@
     android:elevation="4dp">
 
     <FrameLayout
+        android:id="@+id/place_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
