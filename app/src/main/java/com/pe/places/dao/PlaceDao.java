@@ -15,7 +15,16 @@ public interface PlaceDao {
     void save(Place place);
 
     @Query("Select * from Place")
-     List<Place> getAll();
+    List<Place> getAll();
+
+    @Query("SELECT * FROM Place WHERE id = :id")
+    Place findById(int id);
+
+    @Query("DELETE FROM Place WHERE id = :id")
+    int deleteById(int id);
+
+    @Query("Select count(id) from Place")
+    int getPlaces();
 
     @Update
     void update(Place place);

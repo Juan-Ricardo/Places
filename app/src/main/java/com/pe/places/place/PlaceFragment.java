@@ -138,7 +138,7 @@ public class PlaceFragment extends Fragment {
                 placeRecyclerView.setVisibility(View.VISIBLE);
 
             }
-        },1500);
+        }, 1000);
     }
 
     View.OnClickListener addPlaceOnClickListener = new View.OnClickListener() {
