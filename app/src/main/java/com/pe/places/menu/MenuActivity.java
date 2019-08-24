@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pe.places.dao.RoomDataBaseManager;
 import com.pe.places.notification.NotificationFragment;
 import com.pe.places.place.PlaceFragment;
-import com.pe.places.place.callback.PlaceBadgeCallBack;
 import com.pe.places.profile.ProfileFragment;
 import com.pe.places.R;
 
