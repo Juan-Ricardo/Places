@@ -31,4 +31,6 @@ public interface PlaceDao {
 
     @Delete
     void delete(Place place);
+
+    //https://developer.android.com/training/data-storage/room/accessing-data
 }
