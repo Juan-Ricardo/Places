@@ -1,16 +1,15 @@
 package com.pe.places.place;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.app.Activity;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -20,7 +19,6 @@ import com.pe.places.dao.RoomDataBaseManager;
 import com.pe.places.utilities.Constants;
 import com.tapadoo.alerter.Alerter;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,6 +28,7 @@ public class PlaceDetailActivity extends AppCompatActivity {
     private MaterialButton savePlaceMaterialButton;
     private TextInputEditText namePlaceTextInputEditText;
     private TextInputEditText descriptionTextInputEditText;
+    private TextInputEditText totalPersonTextInputEditText;
     private Toolbar toolbar;
     private MenuItem deleteMenuItem;
     public static final String COUNTRY = "country";
@@ -47,7 +46,8 @@ public class PlaceDetailActivity extends AppCompatActivity {
     private void finds() {
         savePlaceMaterialButton = findViewById(R.id.save_place_material_button);
         namePlaceTextInputEditText = findViewById(R.id.name_place_text_input_edit_text);
-        descriptionTextInputEditText = findViewById(R.id.descriptio_text_input_edit_text);
+        descriptionTextInputEditText = findViewById(R.id.description_text_input_edit_text);
+        totalPersonTextInputEditText = findViewById(R.id.person_text_input_edit_text);
         savePlaceMaterialButton.setOnClickListener(savePlaceOnClickListener);
         setupToolbar("Nuevo", "", true);
     }
@@ -63,6 +63,7 @@ public class PlaceDetailActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             crud = extras.getString(Constants.CRUD);
@@ -70,10 +71,14 @@ public class PlaceDetailActivity extends AppCompatActivity {
                 currentPlace = (Place) extras.getSerializable(Constants.PLACE);
                 namePlaceTextInputEditText.setText("" + currentPlace.getName());
                 descriptionTextInputEditText.setText("" + currentPlace.getDescription());
+                totalPersonTextInputEditText.setText("" + currentPlace.getTotalPerson());
                 savePlaceMaterialButton.setText("Update");
                 toolbar.setTitle("Actualizar");
+            } else {
+
             }
         }
+
     }
 
     @Override
@@ -94,32 +99,43 @@ public class PlaceDetailActivity extends AppCompatActivity {
         String description = descriptionTextInputEditText.getText().toString();
 
         //placeValidate(name, description);
+
         if (name.isEmpty()) {
-            showMessage("Nombre",R.drawable.ic_user
-                    ,"Por favor ingrese nombre de la ciudad",R.color.dark);
+            showMessage("Nombre", R.drawable.ic_place
+                    , "Por favor ingrese nombre de la ciudad", R.color.dark);
             return;
         }
         if (description.isEmpty()) {
-            showMessage("Descripción",R.drawable.ic_place
-                    ,"Por favor ingrese una descripción de la ciudad",R.color.primary_dark);
+            showMessage("Descripción", R.drawable.ic_place
+                    , "Por favor ingrese una descripción de la ciudad", R.color.primary_dark);
+            return;
+        }
+
+        if (totalPersonTextInputEditText.getText().toString().isEmpty()) {
+            showMessage("Personas", R.drawable.ic_user
+                    , "Por favor ingrese el número de personas", R.color.dark);
             return;
         }
 
         if (crud.equalsIgnoreCase(Constants.UPDATE)) {
             currentPlace.setName(name);
             currentPlace.setDescription(description);
-            RoomDataBaseManager.getInstance(getBaseContext()).placeDao().update(currentPlace);
+            currentPlace.setTotalPerson(Integer.parseInt(totalPersonTextInputEditText.getText().toString()));
+            RoomDataBaseManager.getInstance(getBaseContext())
+                    .placeDao().update(currentPlace);
         } else {
             Place newPlace = new Place();
             newPlace.setName(name);
             newPlace.setImage(getRandomImage());
             newPlace.setDescription(description);
-            RoomDataBaseManager.getInstance(getBaseContext()).placeDao().save(newPlace);
+            newPlace.setTotalPerson(Integer.parseInt(totalPersonTextInputEditText.getText().toString()));
+            RoomDataBaseManager.getInstance(getBaseContext())
+                    .placeDao().save(newPlace);
         }
         finish();
     }
 
-    private void showMessage(String name,int icon, String detail, int background) {
+    private void showMessage(String name, int icon, String detail, int background) {
         Alerter.create(PlaceDetailActivity.this)
                 .setTitle(name)
                 .setIcon(icon)
@@ -129,8 +145,22 @@ public class PlaceDetailActivity extends AppCompatActivity {
     }
 
     private void placeDelete() {
-        RoomDataBaseManager.getInstance(getBaseContext()).placeDao().delete(currentPlace);
-        finish();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getResources().getString(R.string.title_delete_place)+" "+currentPlace.getName()+"?");
+        builder.setMessage("Mensaje");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                RoomDataBaseManager.getInstance(getBaseContext()).placeDao().delete(currentPlace);
+                finish();
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        builder.create().show();
+
     }
 
     private String getRandomImage() {
@@ -152,6 +182,11 @@ public class PlaceDetailActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.place_menu, menu);
+
+        MenuItem deletePlaceMenuItem = menu.findItem(R.id.delete_item);
+        if (crud.equalsIgnoreCase(Constants.CREATE))
+            deletePlaceMenuItem.setVisible(false);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -160,6 +195,9 @@ public class PlaceDetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.delete_item:
                 placeDelete();
+                break;
+            case R.id.setting_item:
+                Toast.makeText(getBaseContext(), "Configuración", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

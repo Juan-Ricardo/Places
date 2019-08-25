@@ -8,64 +8,83 @@
 
     <include layout="@layout/app_bar_layout"></include>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <!--<com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrese nombre de la ciudad">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name_place_text_input_edit_text"
+            <!--<com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Ingrese nombre de la ciudad">
 
-        </com.google.android.material.textfield.TextInputLayout>-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_place_text_input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ingrese nombre de la ciudad">
+            </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name_place_text_input_edit_text"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Ingrese nombre de la ciudad">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_place_text_input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Describe la ciudad">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descriptio_text_input_edit_text"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Ingrese la descripción">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description_text_input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/save_place_material_button"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="24dp"
-            android:text="Guardar"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:visibility="visible"
-            app:cornerRadius="24dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese total de habitantes">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/person_text_input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_place_material_button"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="24dp"
+                android:text="Guardar"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:cornerRadius="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

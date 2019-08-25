@@ -8,6 +8,31 @@
 
     <include layout="@layout/app_bar_layout"></include>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:shimmer_duration="1000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/placeholder_place" />
+
+            <include layout="@layout/placeholder_place" />
+
+            <include layout="@layout/placeholder_place" />
+
+            <include layout="@layout/placeholder_place" />
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +56,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/place_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
@@ -43,6 +70,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="68dp"
+
+        app:backgroundTint="@color/primary_dark"
         app:srcCompat="@drawable/ic_add_white_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

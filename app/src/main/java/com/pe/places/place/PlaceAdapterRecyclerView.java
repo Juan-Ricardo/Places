@@ -26,6 +26,7 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
     private List<Place> places;
     private int resource;
     private Activity activity;
+    private OnItemClickListener onItemClickListener;
 
     public PlaceAdapterRecyclerView(List<Place> places, int resource, Activity activity) {
         this.places = places;
@@ -41,13 +42,21 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlaceViewHolder holder, final int position) {
         final Place place = this.places.get(position);
         holder.namePlaceTextView.setText(place.getName());
-        holder.descriptionPlaceTextView.setText(place.getDescription());
+        holder.descriptionPlaceTextView.setText("En " + place.getName() + " hay "
+                + place.getTotalPerson() + " Personas. " + place.getDescription());
 
         Picasso.get().load(place.getImage()).into(holder.placeImageView);
-
+        holder.placeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(v, places.get(position), position);
+                }
+            }
+        });
         holder.editFrameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,5 +93,12 @@ public class PlaceAdapterRecyclerView extends RecyclerView.Adapter<PlaceAdapterR
             placeImageView = view.findViewById(R.id.place_image_view);
             descriptionPlaceTextView = view.findViewById(R.id.description_place_text_view);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, Place place, int position);
+    }
+    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

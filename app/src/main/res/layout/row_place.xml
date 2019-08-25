@@ -7,13 +7,14 @@
     android:elevation="4dp">
 
     <FrameLayout
+        android:id="@+id/place_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/place_image_view"
             android:layout_width="match_parent"
-            android:layout_height="224dp"
+            android:layout_height="232dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_machu_picchu" />
 
@@ -34,7 +35,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="94dp"
             android:layout_gravity="bottom"
             android:background="@color/dark_65"
             android:orientation="vertical"

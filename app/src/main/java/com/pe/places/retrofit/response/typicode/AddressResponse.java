@@ -1,4 +1,4 @@
-package com.pe.places.retrofit.response;
+package com.pe.places.retrofit.response.typicode;
 
 public class AddressResponse {
     private String street;

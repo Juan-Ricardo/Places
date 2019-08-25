@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,26 +15,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.pe.places.R;
 import com.pe.places.retrofit.client.ApiClient;
 import com.pe.places.retrofit.client.ApiService;
-import com.pe.places.retrofit.response.UserResponse;
+import com.pe.places.retrofit.client.RestaurantApiClient;
+import com.pe.places.retrofit.client.RestaurantApiService;
+import com.pe.places.retrofit.request.restaurant.CustomerRequest;
+import com.pe.places.retrofit.response.restaurant.CustomerResponse;
+import com.pe.places.retrofit.response.restaurant.DataResponse;
+import com.pe.places.retrofit.response.typicode.UserResponse;
 import com.pe.places.volley.SingletonVolley;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Retrofit;
 
 
 /**
@@ -41,6 +44,8 @@ import retrofit2.Retrofit;
 public class NotificationFragment extends Fragment {
 
     private Toolbar toolbar;
+    private RecyclerView userRecyclerView;
+    private UserAdapterRecyclerView userAdapterRecyclerView;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -55,15 +60,92 @@ public class NotificationFragment extends Fragment {
         return view;
     }
 
+    private void finds(View view) {
+        setupToolbar(view, "Usuarios", "", false);
+        userRecyclerView = view.findViewById(R.id.user_recycler_view);
+    }
+
+    private void setupToolbar(View view, String title, String subTitle, boolean arrow) {
+        toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(subTitle);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(arrow);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-
+        //getAllUsers();
         //volleyExample();
-        retrofit2();
+        //retrofit2();
+        apiRestRestaurant();
     }
 
-    private void retrofit2() {
+    private void refreshPlaceAdapterRecyclerView(List<UserResponse> userResponses) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        userRecyclerView.setLayoutManager(linearLayoutManager);
+        userAdapterRecyclerView = new UserAdapterRecyclerView(userResponses, R.layout.row_user, getActivity());
+        userRecyclerView.setAdapter(userAdapterRecyclerView);
+    }
+
+    private void apiRestRestaurant() {
+
+        //Crear Cliente
+        /*CustomerRequest newCustomerRequest = new CustomerRequest();
+        newCustomerRequest.setNombres("Maria AM");
+        newCustomerRequest.setApellido_paterno("Paterno AM");
+        newCustomerRequest.setApellido_materno("Materno AM");
+        newCustomerRequest.setImagen("MaternoAM.jpg");
+        newCustomerRequest.setEmail("mariaam@gmail.com");
+        newCustomerRequest.setPassword("123456");
+
+        Call<CustomerRequest> customerRequest = RestaurantApiClient.getInstance(getContext())
+                .createService(RestaurantApiService.class)
+                .customerCreate(newCustomerRequest);
+        customerRequest.enqueue(new Callback<CustomerRequest>() {
+            @Override
+            public void onResponse(Call<CustomerRequest> call, retrofit2.Response<CustomerRequest> response) {
+                if (response.isSuccessful()) {
+                    Log.v("restaurant: ", "true");
+                } else {
+                    Log.v("restaurant: ", "false");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerRequest> call, Throwable t) {
+                Log.v("restaurant: ", "" + t.getMessage());
+            }
+        });*/
+
+
+        Call<CustomerResponse> allCustomers = RestaurantApiClient.getInstance(getContext())
+                .createService(RestaurantApiService.class)
+                .getAllCustomers();
+
+        allCustomers.enqueue(new Callback<CustomerResponse>() {
+            @Override
+            public void onResponse(Call<CustomerResponse> call, retrofit2.Response<CustomerResponse> response) {
+                List<DataResponse> data = response.body().getData();
+                for (int i = 0; i < data.size(); i++) {
+                    Log.v("restaurant: ", "" + data.get(i).get_id());
+                    Log.v("restaurant: ", "" + data.get(i).getApellido_materno());
+                    Log.v("restaurant: ", "" + data.get(i).getApellido_materno());
+                    Log.v("restaurant: ", "" + data.get(i).getEmail());
+                    Log.v("restaurant: ", "" + data.get(i).getImagen());
+                    Log.v("restaurant: ", "*******************************************");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerResponse> call, Throwable t) {
+                Log.v("restaurant: ", "" + t.getMessage());
+            }
+        });
+    }
+
+    private void getAllUsers() {
 
         Call<List<UserResponse>> allUsers = ApiClient.getInstance(getContext())
                 .createService(ApiService.class)
@@ -73,14 +155,7 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onResponse(Call<List<UserResponse>> call,
                                    retrofit2.Response<List<UserResponse>> response) {
-                List<UserResponse> body = response.body();
-                for (UserResponse userResponse : body) {
-                    Log.v("users: ", "onResponse: " + userResponse.getName());
-                    Log.v("users: ", "onResponse: " + userResponse.getEmail());
-                    Log.v("users: ", "onResponse: " + userResponse.getAddress().getCity());
-                    Log.v("users: ", "onResponse: " + userResponse.getAddress().getZipcode());
-                    Log.v("users: ", " -----------------------------------------------");
-                }
+                refreshPlaceAdapterRecyclerView(response.body());
             }
 
             @Override
@@ -107,16 +182,5 @@ public class NotificationFragment extends Fragment {
         SingletonVolley.getInstance(getContext()).addToRequestQueue(jsonArrayRequest);
     }
 
-    private void finds(View view) {
-        setupToolbar(view, "Notificaciones", "", false);
-    }
-
-    private void setupToolbar(View view, String title, String subTitle, boolean arrow) {
-        toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).setTitle(title);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(subTitle);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(arrow);
-    }
 
 }

@@ -7,17 +7,19 @@ import com.pe.places.BuildConfig;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {
+public class RestaurantApiClient {
     private Retrofit retrofit;
-    private static ApiClient INSTANCE;
-    public ApiClient(Context context) {
+    private static RestaurantApiClient INSTANCE;
+
+    public RestaurantApiClient(Context context) {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.URL)
-               .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-    public static ApiClient getInstance(Context context) {
-        if (INSTANCE == null) INSTANCE = new ApiClient(context);
+
+    public static RestaurantApiClient getInstance(Context context) {
+        if (INSTANCE == null) INSTANCE = new RestaurantApiClient(context);
         return INSTANCE;
     }
 

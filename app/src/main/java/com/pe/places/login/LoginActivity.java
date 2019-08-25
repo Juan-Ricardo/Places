@@ -98,16 +98,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showSettingsDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-        builder.setTitle("Need Permissions");
-        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
-        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+        builder.setTitle("Necesita permisos");
+        builder.setMessage("Esta aplicación necesita permiso para usar esta función. Puede otorgarlos en la configuración de la aplicación.");
+        builder.setPositiveButton("Ir a la configuración", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
                 openSettings();
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
