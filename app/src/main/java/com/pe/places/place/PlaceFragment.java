@@ -142,13 +142,12 @@ public class PlaceFragment extends Fragment {
 
                 placeRecyclerView.setAdapter(placeAdapterRecyclerView);
 
-                placeAdapterRecyclerView.setOnItemClickListener(
-                        new PlaceAdapterRecyclerView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, Place place, int position) {
-                                showCustomDialog(place);
-                            }
-                        });
+                placeAdapterRecyclerView.setOnItemClickListener(new PlaceAdapterRecyclerView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, Place place, int position) {
+                        showCustomDialog(place);
+                    }
+                });
 
                 placeShimmerFrameLayout.setVisibility(View.GONE);
                 placeRecyclerView.setVisibility(View.VISIBLE);
@@ -158,6 +157,7 @@ public class PlaceFragment extends Fragment {
     }
 
     private void showCustomDialog(Place place) {
+
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.place_dialog_detail);
@@ -168,11 +168,12 @@ public class PlaceFragment extends Fragment {
         layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        ImageView viewById = dialog.findViewById(R.id.place_image_view);
+        ImageView imageView = dialog.findViewById(R.id.place_image_view);
         Picasso.get()
                 .load(place.getImage())
                 .transform(new CircleTransform())
-                .into(viewById);
+                .into(imageView);
+
         ((TextView) dialog.findViewById(R.id.name_place_text_view))
                 .setText(place.getName());
         ((TextView) dialog.findViewById(R.id.description_place_text_view))
@@ -185,7 +186,7 @@ public class PlaceFragment extends Fragment {
                     }
                 });
 
-        dialog.findViewById(R.id.bt_close)
+        dialog.findViewById(R.id.close_image_button)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

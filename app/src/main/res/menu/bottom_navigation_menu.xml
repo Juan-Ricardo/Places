@@ -15,11 +15,17 @@
         android:tooltipText="Mis Lugares"
         android:title="Lugares"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_worldwide"
+        android:orderInCategory="102"
+        android:title="Mapas"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/notification"
         android:icon="@drawable/ic_notification"
-        android:orderInCategory="102"
+        android:orderInCategory="103"
         android:title="Notificaciones"
         app:showAsAction="never" />
 </menu>
