@@ -28,6 +28,7 @@ import com.pe.places.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+//B9:51:46:2F:3E:35:58:61:19:98:38:70:54:A9:D3:E9:D7:CA:93:EA
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private MapView mapView;
