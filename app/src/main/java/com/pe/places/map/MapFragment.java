@@ -28,6 +28,9 @@ import com.pe.places.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+// gustavo
+//8D:98:0D:8F:2E:D3:67:CB:7F:A8:F1:A8:7C:E8:6F:7E:81:14:63:DD
+
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private MapView mapView;
