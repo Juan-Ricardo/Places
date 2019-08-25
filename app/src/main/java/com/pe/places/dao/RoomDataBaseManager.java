@@ -24,4 +24,7 @@ public abstract class RoomDataBaseManager extends RoomDatabase {
         }
         return roomDataBaseManager;
     }
+
+    //Referencias
+    //https://github.com/googlesamples/android-architecture-components/tree/master/PersistenceContentProviderSample
 }

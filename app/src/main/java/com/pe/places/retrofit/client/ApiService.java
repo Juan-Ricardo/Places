@@ -1,6 +1,6 @@
 package com.pe.places.retrofit.client;
 
-import com.pe.places.retrofit.response.UserResponse;
+import com.pe.places.retrofit.response.typicode.UserResponse;
 
 import java.util.List;
 

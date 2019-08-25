@@ -12,6 +12,7 @@
         android:id="@+id/place"
         android:icon="@drawable/ic_place"
         android:orderInCategory="101"
+        android:tooltipText="Mis Lugares"
         android:title="Lugares"
         app:showAsAction="never" />
 
