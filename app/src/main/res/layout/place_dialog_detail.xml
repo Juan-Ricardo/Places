@@ -16,7 +16,7 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/bt_close"
+            android:id="@+id/close_image_button"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
