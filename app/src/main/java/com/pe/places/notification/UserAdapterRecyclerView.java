@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pe.places.R;
 import com.pe.places.dao.Place;
 import com.pe.places.place.PlaceDetailActivity;
-import com.pe.places.retrofit.response.UserResponse;
+import com.pe.places.retrofit.response.typicode.UserResponse;
 import com.pe.places.utilities.Constants;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

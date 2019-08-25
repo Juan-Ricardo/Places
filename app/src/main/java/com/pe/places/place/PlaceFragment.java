@@ -1,12 +1,17 @@
 package com.pe.places.place;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,7 +27,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pe.places.R;
 import com.pe.places.dao.Place;
 import com.pe.places.dao.RoomDataBaseManager;
+import com.pe.places.utilities.CircleTransform;
 import com.pe.places.utilities.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -130,15 +137,63 @@ public class PlaceFragment extends Fragment {
             public void run() {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                 placeRecyclerView.setLayoutManager(linearLayoutManager);
-                placeAdapterRecyclerView = new PlaceAdapterRecyclerView(places, R.layout.row_place, getActivity());
+                placeAdapterRecyclerView = new PlaceAdapterRecyclerView(
+                        places, R.layout.row_place, getActivity());
+
                 placeRecyclerView.setAdapter(placeAdapterRecyclerView);
-                placeAdapterRecyclerView.notifyDataSetChanged();
+
+                placeAdapterRecyclerView.setOnItemClickListener(
+                        new PlaceAdapterRecyclerView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, Place place, int position) {
+                                showCustomDialog(place);
+                            }
+                        });
 
                 placeShimmerFrameLayout.setVisibility(View.GONE);
                 placeRecyclerView.setVisibility(View.VISIBLE);
 
             }
-        },1500);
+        }, 1000);
+    }
+
+    private void showCustomDialog(Place place) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.place_dialog_detail);
+        dialog.setCancelable(false);
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        ImageView viewById = dialog.findViewById(R.id.place_image_view);
+        Picasso.get()
+                .load(place.getImage())
+                .transform(new CircleTransform())
+                .into(viewById);
+        ((TextView) dialog.findViewById(R.id.name_place_text_view))
+                .setText(place.getName());
+        ((TextView) dialog.findViewById(R.id.description_place_text_view))
+                .setText(place.getDescription());
+        dialog.findViewById(R.id.close_material_button)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+        dialog.findViewById(R.id.bt_close)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+        dialog.show();
+        dialog.getWindow().setAttributes(layoutParams);
     }
 
     View.OnClickListener addPlaceOnClickListener = new View.OnClickListener() {

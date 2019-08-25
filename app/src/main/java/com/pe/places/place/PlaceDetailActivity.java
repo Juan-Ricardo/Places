@@ -97,11 +97,11 @@ public class PlaceDetailActivity extends AppCompatActivity {
 
         String name = namePlaceTextInputEditText.getText().toString();
         String description = descriptionTextInputEditText.getText().toString();
-        int totalPerson = Integer.parseInt(totalPersonTextInputEditText.getText().toString());
 
         //placeValidate(name, description);
+
         if (name.isEmpty()) {
-            showMessage("Nombre", R.drawable.ic_user
+            showMessage("Nombre", R.drawable.ic_place
                     , "Por favor ingrese nombre de la ciudad", R.color.dark);
             return;
         }
@@ -111,10 +111,16 @@ public class PlaceDetailActivity extends AppCompatActivity {
             return;
         }
 
+        if (totalPersonTextInputEditText.getText().toString().isEmpty()) {
+            showMessage("Personas", R.drawable.ic_user
+                    , "Por favor ingrese el número de personas", R.color.dark);
+            return;
+        }
+
         if (crud.equalsIgnoreCase(Constants.UPDATE)) {
             currentPlace.setName(name);
             currentPlace.setDescription(description);
-            currentPlace.setTotalPerson(totalPerson);
+            currentPlace.setTotalPerson(Integer.parseInt(totalPersonTextInputEditText.getText().toString()));
             RoomDataBaseManager.getInstance(getBaseContext())
                     .placeDao().update(currentPlace);
         } else {
@@ -122,7 +128,7 @@ public class PlaceDetailActivity extends AppCompatActivity {
             newPlace.setName(name);
             newPlace.setImage(getRandomImage());
             newPlace.setDescription(description);
-            newPlace.setTotalPerson(totalPerson);
+            newPlace.setTotalPerson(Integer.parseInt(totalPersonTextInputEditText.getText().toString()));
             RoomDataBaseManager.getInstance(getBaseContext())
                     .placeDao().save(newPlace);
         }
